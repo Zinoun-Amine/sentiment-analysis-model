@@ -18,21 +18,18 @@ def setup_nltk():
         nltk.data.find('corpora/stopwords')
         nltk.data.find('corpora/wordnet')
     except LookupError:
-        print("📥 Téléchargement des ressources NLTK...")
+        print(" Téléchargement des ressources NLTK...")
         nltk.download('punkt', quiet=True)
         nltk.download('stopwords', quiet=True)
         nltk.download('wordnet', quiet=True)
         nltk.download('omw-1.4', quiet=True)
 
 class TextPreprocessor:
-    """Classe pour le prétraitement des avis TikTok"""
     
     def __init__(self):
         setup_nltk()
         self.stop_words = set(stopwords.words('english'))
         self.lemmatizer = WordNetLemmatizer()
-        
-        # Mots spécifiques TikTok à conserver
         self.tiktok_words = {'tiktok', 'app', 'video', 'content', 'creator', 'fyp', 'viral'}
         self.stop_words = self.stop_words - self.tiktok_words
         
@@ -106,24 +103,17 @@ def step2_preprocessing():
     
     print("🧹 ÉTAPE 2: PRÉTRAITEMENT DES TEXTES")
     print("="*60)
-    
-    # Charger les données de l'étape 1
     base_dir = os.path.dirname(os.path.dirname(__file__))
     data_path = os.path.join(base_dir, 'data', 'processed', 'tiktok_sentiment_data.csv')
     
     df = pd.read_csv(data_path)
     print(f"📊 Dataset chargé: {len(df):,} avis")
-    
-    # Prendre un échantillon pour les tests (optionnel)
     sample_size = min(50000, len(df))  # Limiter à 50k pour les tests
     df_sample = df.sample(n=sample_size, random_state=42)
     print(f"📝 Échantillon de travail: {len(df_sample):,} avis")
     
-    # Initialiser le préprocesseur
     preprocessor = TextPreprocessor()
-    
-    # 1. EXEMPLES DE PRÉTRAITEMENT
-    print(f"\n🔍 EXEMPLES DE PRÉTRAITEMENT:")
+    print(f"\n EXEMPLES DE PRÉTRAITEMENT:")
     
     sample_texts = [
         "I LOVE THIS APP!!! 😍😍😍 Best app ever!!!",
@@ -192,10 +182,10 @@ def step2_preprocessing():
     df_final = df_clean[['text', 'text_cleaned', 'text_processed', 'sentiment', 'score']].copy()
     df_final.to_csv(output_path, index=False, encoding='utf-8')
     
-    print(f"\n✅ DONNÉES PRÉTRAITÉES SAUVEGARDÉES:")
-    print(f"   📁 Fichier: {output_path}")
-    print(f"   📊 Dataset final: {len(df_final):,} avis")
-    print(f"   🎯 Prêt pour l'ÉTAPE 3: REPRÉSENTATION")
+    print(f"\n DONNÉES PRÉTRAITÉES SAUVEGARDÉES:")
+    print(f"    Fichier: {output_path}")
+    print(f"    Dataset final: {len(df_final):,} avis")
+    print(f"    Prêt pour l'ÉTAPE 3: REPRÉSENTATION")
     
     return df_final
 
