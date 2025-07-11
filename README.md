@@ -6,14 +6,14 @@ Ce projet est une application web **Angular** conçue pour analyser les sentimen
 
 L'objectif était de maîtriser l'ensemble du cycle de vie d'un projet de data science : de la collecte et du nettoyage des données, à l'entraînement et l'évaluation rigoureuse de modèles, jusqu'au déploiement dans une application web fonctionnelle.
 
-### ✨ Fonctionnalités clés
+###  Fonctionnalités clés
 
 *   **Analyse en Temps Réel :** Entrez n'importe quel texte pour obtenir une prédiction de sentiment instantanée.
 *   **Interface Dynamique :** La carte de résultat change de couleur et d'icône en fonction du sentiment prédit (vert pour positif, rouge pour négatif, gris pour neutre).
 *   **Tableau de Bord Interactif :** Visualisez une analyse sur un échantillon aléatoire de 100 commentaires de la base de données.
 *   **Expérience Utilisateur Soignée :** Animations fluides, états de chargement clairs, et design responsive.
 
-## 🛠️ Stack Technique
+##  Stack Technique
 
 Ce projet combine des technologies de pointe pour le frontend, le backend et le machine learning.
 
@@ -32,13 +32,4 @@ Ce projet combine des technologies de pointe pour le frontend, le backend et le 
     *   **Imbalanced-learn** - Pour gérer le déséquilibre des classes via le sous-échantillonnage (Undersampling).
     *   ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white) - Pour la manipulation et le nettoyage des données.
 
-## 🚀 Installation et Lancement
-
-Pour lancer ce projet en local, suivez ces étapes :
-
-### Pré-requis
-
-*   Node.js et npm/yarn
-*   Python 3.8+ et pip
-*   Angular CLI (`npm install -g @angular/cli`)
 
