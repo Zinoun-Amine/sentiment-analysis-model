@@ -1,0 +1,20 @@
+/* src/styles.css */
+
+/* Basic resets and global styles */
+body {
+    margin: 0;
+    padding: 0;
+    /* --- NEW SOFT BACKGROUND COLOR --- */
+    background-color: #f8f8fa; /* A very light, subtle off-white/light grey */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #333; /* Default text color for the whole app */
+}
+
+/* Ensure Angular's root element also takes up full height if needed */
+html, body {
+    height: 100%;
+}
+app-root {
+    display: block;
+    min-height: 100%;
+}

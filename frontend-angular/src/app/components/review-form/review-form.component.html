@@ -1,0 +1,68 @@
+<!-- src/app/components/review-form/review-form.component.html -->
+
+<!-- Main wrapper to limit width and center content -->
+<div class="sentiment-analyzer-wrapper">
+
+  <!-- Header Section -->
+  <div class="header-section">
+    <!-- NEW MAIN APPLICATION TITLE -->
+    <h1 class="main-app-title">Analyse de Sentiment <span class="tiktok-brand">sur TikTok</span></h1>
+
+    <!-- ORIGINAL "Analyse de Sentiment" title, now as a section heading (h2) -->
+    <h2 class="section-heading">Analyse de Sentiment</h2>
+    <p class="subtitle">Entrez un avis pour prédire son sentiment.</p>
+  </div>
+
+  <!-- Main content area: Input Form and Examples, side-by-side on large screens -->
+  <div class="main-content">
+
+    <!-- Input Form Card -->
+    <div class="card input-card">
+      <form [formGroup]="reviewForm" (ngSubmit)="onPredict()">
+        <label for="reviewText">Écris ici ton avis...</label>
+        <textarea id="reviewText" formControlName="reviewText" rows="6" placeholder="Ex: 'This app is fantastic!'"></textarea>
+
+        <button type="submit" [disabled]="isPredicting || reviewForm.invalid">
+          <span *ngIf="!isPredicting">Prédire</span>
+          <span *ngIf="isPredicting" class="spinner"></span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Examples Section Card -->
+    <div class="card examples-card">
+      <!-- --- CHANGED SYMBOL TO COMMENT BUBBLE --- -->
+      <h3>💬 Essayez avec ces exemples :</h3>
+      <ul>
+        <li *ngFor="let example of exampleReviews" (click)="useExample(example.text)">
+          "{{ example.text | slice:0:60 }}..."
+          <span>&gt;</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Result Container (will appear below the main-content) -->
+  <div class="result-container">
+    <div *ngIf="predictionResult && !isPredicting" class="result-card" [ngClass]="getSentimentClass()">
+      <div class="result-icon">
+        <span *ngIf="predictionResult.sentiment === 'Positive'">😊</span>
+        <span *ngIf="predictionResult.sentiment === 'Negative'">😠</span>
+        <span *ngIf="predictionResult.sentiment === 'Neutral'">😐</span>
+      </div>
+      <div class="result-content">
+        <p class="review-text">"{{ predictionResult.text }}"</p>
+        <h2 class="sentiment-label">{{ predictionResult.sentiment | uppercase }}</h2>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage && !isPredicting" class="result-card sentiment-error">
+      <div class="result-icon">⚠️</div>
+      <div class="result-content">
+        <h2 class="sentiment-label">Erreur</h2>
+        <p>{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- End of .sentiment-analyzer-wrapper -->
